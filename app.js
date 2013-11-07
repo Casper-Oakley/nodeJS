@@ -1,6 +1,7 @@
 var express = require('express')
 , http = require('http')
 , app = express()
+, color = require('colors')
 , routes = require('./routes');
 
 app.set('view engine', 'ejs');
@@ -15,5 +16,6 @@ var repeat = 4;
 app.get('/open', routes.open(repeat));
 
 server = http.createServer(app);
-server.listen(8000);
-console.log('Express server started on port %s', server.address().port);
+var port = process.env.PORT || 5000;
+server.listen(port);
+console.log('Express server started'.rainbow);
