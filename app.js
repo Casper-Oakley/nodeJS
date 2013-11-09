@@ -20,12 +20,7 @@ app.set('views', __dirname + '/views');
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req,res){
-	var iptest = req.connection.remoteAddress();
-	var gg = new test({ name: iptest});
-	console.log(gg.name);
-	routes.index;
-});
+app.get('/', routes.index);
 
 app.get('/chocolates', routes.chocolates);
 
