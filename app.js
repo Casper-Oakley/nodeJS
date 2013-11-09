@@ -5,7 +5,7 @@ var express = require('express')
 , color = require('colors')
 , routes = require('./routes');
 app.set('view engine', 'ejs');
-mongoose.connect('mongodb://localhost/mydb');
+mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
