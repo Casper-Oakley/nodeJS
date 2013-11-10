@@ -6,6 +6,7 @@ var express = require('express')
 , routes = require('./routes');
 app.set('view engine', 'ejs');
 mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
+//mongoose.connect('mongodb://localhost/mydb');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -13,8 +14,16 @@ db.once('open', function callback () {
 	var testSchema = mongoose.Schema({
 		name: String
 	})
+	testSchema.methods.speak = function(){
+		var name1 = this.name;
+		console.log(name1);
+	}
 	var test = mongoose.model('Test1',testSchema)
 	var joe = new test({ name: 'yoyoyo' })
+	joe.save(function (err,joe){
+		if(err)
+			joe.speak();
+	});
 });
 app.set('views', __dirname + '/views');
 app.use(app.router);
