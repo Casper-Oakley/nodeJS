@@ -25,10 +25,6 @@ var joe = new test({ url: 'YPXCcZgDQgk', num: 1 })
 var joe2 = new test({ url: 'asd', num: 2})
 var current = joe.url;
 var patt1=/duration='[0-9]'/;
-$.get("https://gdata.youtube.com/feeds/api/videos/"+current+"?v=2",function(data){
-	console.log("yo")
-	console.log(data)
-});
 joe.save(function (err,joe){
 	if(err)
 		joe.speak();
@@ -39,12 +35,14 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', routes.index(current));
 
-app.get('/chocolates', routes.chocolates);
-
-var repeat = 4;
-app.get('/open', routes.open(repeat));
-
 server = http.createServer(app);
 var port = process.env.PORT || 5000;
-server.listen(port);
+var io = require('socket.io').listen(app.listen(port));
+io.sockets.on('connection', function(socket) {
+	socket.emit('message', { message: 'test' });
+	socket.on('send', function(data){
+		io.sockets.emit('message',data);
+		current = data;
+	});
+});
 console.log('Express server started'.rainbow);

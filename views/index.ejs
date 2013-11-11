@@ -2,17 +2,10 @@
 
 <hr>
 <div class="jumbotron">
-      <h1>Hello! Your url of choice is: <%= url %></h1>
-	  <iframe width="480" height="360" src="//www.youtube.com/embed/<%= url %>?rel=0&autoplay=1"frameborder="0" allowfullscreen></iframe>
-
+<div id="player"></div>
+  	<script src="/socket.io/socket.io.js"></script>
+	<script src="../js/socketTest.js"></script>
 </div>
- <td colspan="2"><input class="textBox" id="fName" type="text" maxlength="30"    required/></td>
-<td><input type="button" class="loginButtons" value="Login" onclick="submit();"/>
-<script>
-	var userName = document.getElementById('fName');
-	function submit(){
-		alert(userName.value);
-    }
-</script>
-
+ <td colspan="2"><input class="textBox" id="field" type="text" maxlength="30"    required/></td>
+<td><input type="button" class="loginButtons" value="work" id="send"/>
 <% include footer.ejs %>
