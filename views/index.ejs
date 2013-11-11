@@ -2,8 +2,17 @@
 
 <hr>
 <div class="jumbotron">
-      <h1>Hello! Your ip is: <%= iptest %></h1>
+      <h1>Hello! Your url of choice is: <%= url %></h1>
+	  <iframe width="480" height="360" src="//www.youtube.com/embed/<%= url %>?rel=0&autoplay=1"frameborder="0" allowfullscreen></iframe>
 
 </div>
+ <td colspan="2"><input class="textBox" id="fName" type="text" maxlength="30"    required/></td>
+<td><input type="button" class="loginButtons" value="Login" onclick="submit();"/>
+<script>
+	var userName = document.getElementById('fName');
+	function submit(){
+		alert(userName.value);
+    }
+</script>
 
 <% include footer.ejs %>

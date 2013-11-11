@@ -10,26 +10,28 @@ mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
-	console.log("mongodb connected successfully".red)
-	var testSchema = mongoose.Schema({
-		name: String
-	})
-	testSchema.methods.speak = function(){
-		var name1 = this.name;
-		console.log(name1);
-	}
-	var test = mongoose.model('Test1',testSchema)
-	var joe = new test({ name: 'yoyoyo' })
-	joe.save(function (err,joe){
-		if(err)
-			joe.speak();
-	});
+	console.log("mongodb connected successfully".red)});
+var testSchema = mongoose.Schema({
+	url: String,
+	num: Number
+});
+testSchema.methods.speak = function(){
+	var name1 = this.url;
+	console.log(name1+" has connected");
+};
+var test = mongoose.model('Test1',testSchema)
+var joe = new test({ url: 'YPXCcZgDQgk', num: 1 })
+var joe2 = new test({ url: 'asd', num: 2})
+joe.save(function (err,joe){
+	if(err)
+		joe.speak();
 });
 app.set('views', __dirname + '/views');
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
+var url = joe.url;
 
-app.get('/', routes.index);
+app.get('/', routes.index(url));
 
 app.get('/chocolates', routes.chocolates);
 

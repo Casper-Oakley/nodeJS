@@ -1,7 +1,7 @@
-exports.index = function(req, res){
-	var iptest = req.connection.remoteAddress;
-	console.log(iptest);
-    res.render('index',{iptest : iptest});
+exports.index = function(url){
+		return function(req,res){
+	    	res.render('index',{url : url});
+	}
 };
 
 exports.chocolates = function(req, res){
