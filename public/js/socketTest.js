@@ -1,7 +1,7 @@
 window.onload = function() {
 
 	//var socket = io.connect('http://localhost:5000');
-	var socket = io.connect('https://shrouded-harbor-7618.herokuapp.com:5000');
+	var socket = io.connect('https://shrouded-harbor-7618.herokuapp.com');
 	var field = document.getElementById("field");
 	var sendButton = document.getElementById("send");
 
