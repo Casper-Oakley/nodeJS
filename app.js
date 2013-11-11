@@ -3,6 +3,7 @@ var express = require('express')
 , app = express()
 , mongoose = require('mongoose')
 , color = require('colors')
+, $ = require('jquery').create()
 , routes = require('./routes');
 app.set('view engine', 'ejs');
 //mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
@@ -24,6 +25,10 @@ var joe = new test({ url: 'YPXCcZgDQgk', num: 1 })
 var joe2 = new test({ url: 'asd', num: 2})
 var current = joe.url;
 var patt1=/duration='[0-9]'/;
+$.get("https://gdata.youtube.com/feeds/api/videos/"+current+"?v=2",function(data){
+	console.log("yo")
+	console.log(data)
+});
 joe.save(function (err,joe){
 	if(err)
 		joe.speak();
