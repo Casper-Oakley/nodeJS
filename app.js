@@ -5,8 +5,8 @@ var express = require('express')
 , color = require('colors')
 , routes = require('./routes');
 app.set('view engine', 'ejs');
-mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
-//mongoose.connect('mongodb://localhost/mydb');
+//mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
+mongoose.connect('mongodb://localhost/mydb');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -22,6 +22,8 @@ testSchema.methods.speak = function(){
 var test = mongoose.model('Test1',testSchema)
 var joe = new test({ url: 'YPXCcZgDQgk', num: 1 })
 var joe2 = new test({ url: 'asd', num: 2})
+var current = joe.url;
+var patt1=/duration='[0-9]'/;
 joe.save(function (err,joe){
 	if(err)
 		joe.speak();
@@ -29,9 +31,8 @@ joe.save(function (err,joe){
 app.set('views', __dirname + '/views');
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
-var url = joe.url;
 
-app.get('/', routes.index(url));
+app.get('/', routes.index(current));
 
 app.get('/chocolates', routes.chocolates);
 
