@@ -6,8 +6,8 @@ var express = require('express')
 , $ = require('jquery').create()
 , routes = require('./routes');
 app.set('view engine', 'ejs');
-//mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
-mongoose.connect('mongodb://localhost/mydb');
+mongoose.connect('mongodb://heroku:herPass@paulo.mongohq.com:10021/app19280570');
+//mongoose.connect('mongodb://localhost/mydb');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
