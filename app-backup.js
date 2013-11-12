@@ -1,5 +1,4 @@
 var express = require('express')
-, WebSocketServer = require('ws').Server
 , http = require('http')
 , app = express()
 , socket = require('socket.io-client')
@@ -39,16 +38,12 @@ app.get('/', routes.index(current));
 
 server = http.createServer(app);
 var port = process.env.PORT || 5000;
-server.listen(port);
-var wss = new WebSocketServer({server: server});
-console.log("websocket online");
-wss.on('connection', function(ws) {
-	ws.send(current);
-	console.log("sending" + current);
-	ws.on('message',function(message){
-		console.log("recieved " + message);
-		current = message;
-		ws.send(current);
+var io = require('socket.io').listen(app.listen(port));
+io.sockets.on('connection', function(socket) {
+	socket.emit('message', { message: current });
+	socket.on('send', function(data){
+		io.sockets.emit('message',data);
+		current = data.message;
 	});
 });
 console.log('Express server started'.rainbow);

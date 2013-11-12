@@ -1,11 +1,10 @@
-	var host = location.origin.replace(/^http/,'ws');
-	var ws = new WebSocket(host);
 	var tag = document.createElement('script');
+	var socket = io.connect(window.location.hostname, {'force new connection': true});
 	tag.src = "https://www.youtube.com/iframe_api";
 	var firstID;
-	ws.onmessage = function (event) {
-		firstID = event.data;
-	}
+	socket.on('message', function (data) {
+		firstID=data.message;
+	});
 	var firstScriptTag = document.getElementsByTagName('script')[0];
 	firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
 	var player;
@@ -38,15 +37,15 @@ window.onload = function() {
 
 	var field = document.getElementById("field");
 	var sendButton = document.getElementById("send");
+
+	socket.on('message', function (data) {
+		console.log(data.message);
+		player.loadVideoById(data.message);
+	});
 	
-	ws.onmessage = function (event) {
-		firstID = event.data;
-		console.log(firstID);
-		player.loadVideoById(firstID);
-	}
 	sendButton.onclick = function() {
 		var text = field.value;
-		ws.send(text);
+		socket.emit('send', { message: text });
 	};
 
 }
