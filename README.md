@@ -1,12 +1,14 @@
 # Hipster Development with Node.js
 
+This is a taster of Node.js. It doesn't include everything you need to know, but I hope it will give you a good impression of why Node is so powerful. It would help if you're already confident with JavaScript. New to JavaScript? [Check this out](http://www.codecademy.com/tracks/javascript) or [this](http://eloquentjavascript.net/contents.html).
+
 ## Contents
 
-- What is Node.js and why should I care?
-- How do I follow this tutorial?
-- What software do I need to install?
-- Cool. How do install that exactly?
-- I'm completely new to programming, help?
+- [What is Node.js and why should I care?](#what-is-nodejs-and-why-should-i-care)
+- [How do I follow this tutorial?](#how-do-i-follow-this-tutorial)
+- [What software do I need to install?](#what-software-do-i-need-to-install)
+- [Cool. How do I install that exactly?](#cool-how-do-i-install-that-exactly)
+- [How can I learn more about Node?](#how-can-i-learn-more-about-node)
 
 ## What is Node.js and why should I care?
 
@@ -40,15 +42,11 @@ Node.js has become hugely popular recently (and for good reason). It is a server
 
 	Once you get the hang of it, It's quick and easy to set up an app using Node. This makes it great for hackathons.
 
-Want more details on why you should be excited? Check out these Quora topics [here](http://www.quora.com/Node-js/Why-is-Node-js-becoming-so-popular) and [here](http://www.quora.com/Why-choose-Node-js-for-web-applications).
-
-### So Node.js is the best?
-
-Well it's pretty darn good, but there are some cases when another language is better suited to your purposes. If you aren't doing much I/O but you are doing a lot of server-side processing, perhaps C++ might suit better. But Node.js can easily spawn child processes so you could always use Node to spawn some C code if necessary.
+Want more details on why you should be excited? Check out these Quora topics [here](http://www.quora.com/Node-js/Why-is-Node-js-becoming-so-popular) and [here](http://www.quora.com/Why-choose-Node-js-for-web-applications). Node has been used by some big companies such as Microsoft, PayPal, LinkedIn, and Yahoo! so it's gaining corporate recognition.
 
 ## How do I follow this tutorial?
 
-You should start by cloning this repository:
+You can just watch me code. If you want to follow along, you should start by cloning this repository:
 
 	git clone git@github.com:TimFogarty/HackSocNodeTutorial.git
 
@@ -83,11 +81,11 @@ If you want to see what the finished product should look like:
 
 	We set up a simple HTTP server using Node's built in `http` module and teach it to sing us a song.
 
-- What we'll learn:
+- We'll learn:
 
 	Introduction to loading modules. How to set up a basic HTTP server. How to run a node app.
 
-#### Chapter 2: Node is Eventful!
+#### Chapter 2: This isn't Minecraft.
 
 - Branches:
 
@@ -97,57 +95,116 @@ If you want to see what the finished product should look like:
 	
 - Topic:
 
-	We explore the benefits of non-blocking (asynchronous) I/O
+	We explore the benefits of non-blocking (asynchronous) I/O.
 
-- Learning Objectives:
+- We'll learn:
 
-	We set up a simple HTTP server using Node's built in `http` module and teach it to sing us a song.
+	How callbacks work. The event loop.
 
-#### Chapter 1: Daisy, Daisy.
-
-- Branches:
-
-	`chapter1-start`
-
-	`chapter1-final`
-	
-- Topic:
-
-	We set up a simple HTTP server using Node's built in `http` module and teach it to sing us a song.
-
-- Learning Objectives:
-
-	We set up a simple HTTP server using Node's built in `http` module and teach it to sing us a song.
-
-#### Chapter 1: Daisy, Daisy.
+#### Chapter 3: All Onboard the Node Express.
 
 - Branches:
 
-	`chapter1-start`
+	`chapter3-start`
 
-	`chapter1-final`
+	`chapter3-final`
 	
 - Topic:
 
-	We set up a simple HTTP server using Node's built in `http` module and teach it to sing us a song.
+	Using the Express.js framework, we set up routes and serve static files.
 
-- Learning Objectives:
+- We'll learn:
 
-	We set up a simple HTTP server using Node's built in `http` module and teach it to sing us a song.
+	Exporting and requiring our own modules. Setting up Express. Serving static html.
+
+#### Chapter 4: <% include template %>
+
+- Branches:
+
+	`chapter4-start`
+
+	`chapter4-final`
+	
+- Topic:
+
+	We look at using ejs with Node. But Node can use pretty much any templating engine: Jade, mustache, etc.
+
+- We'll learn:
+
+	Rendering templates. Passing variables to templates.
+
+#### Chapter 5: Plug in Baby.
+
+- Branches:
+
+	`chapter5-start`
+
+	`chapter5-final`
+	
+- Topic:
+
+	We use socket.io to create a web app for the European Space Agency.
+
+- We'll learn:
+
+	How to set up socket.io. How to emit events and listen for them using sockets.
+
+#### Chapter 6: This chapter should really have databases in it. meh.
+
+- Branches:
+
+	`chapter6-start`
+
+	`chapter6-final`
+	
+- Topic:
+
+	We improve our web app by saving data in sockets.
+
+- We'll learn:
+
+	How to save data on client and server.
+
+#### Chapter 7: Heroku.
+
+- Branches:
+
+	`chapter7-start`
+
+	`chapter7-final`
+	
+- Topic:
+
+	Set up database and deploy to Heroku!
+
+- We'll learn:
+
+	MongoDB and mongoose. package.json and Procfiles.
 
 ## What software do I need to install?
 
+### Necessary
+
 - Node.js
-- Foreman
+
+### Helpful
+
 - Nodemon
+
+### If you want to deploy
+
+- Foreman
 - Heroku Toolbelt
-- MongoDB
-- MySQL
-- PostreSQL
 
-## Cool. How do install that exactly?
+### If you want to use a database
 
-### Ubuntu
+- MongoDB (Postgres and Redis are also commonly used with Node)
+
+## Cool. How do I install that exactly?
+
+### Node.js
+
+#### Ubuntu
 
 You should add Chris Lea's repository then install `nodejs` using apt. Example install:
 
@@ -162,7 +219,7 @@ This will install the current stable Node. Quantal (12.10) users may need to ins
 
 There is a naming conflict with the node package (Amateur Packet Radio Node Program), and the nodejs binary has been renamed from `node` to `nodejs`. You'll need to symlink `/usr/bin/node` to `/usr/bin/nodejs` (`ln -s /usr/bin/nodejs /usr/bin/node`) or you could first uninstall the Amateur Packet Radio Node Program to avoid that conflict (`sudo apt-get --purge remove node`).
 
-### OSX
+#### OSX
 Using [a package](http://nodejs.org/#download)
 
 > Simply [download Macintosh Installer](http://nodejs.org/#download).
@@ -175,11 +232,22 @@ Using [macports](http://www.macports.org/):
 
     port install nodejs  
 
-### Windows
+#### Windows
 
 Simply [download Windows Installer](http://nodejs.org/#download).
 
-### Other Systems and Building from Source
+#### Other Systems and Building from Source
 
 Installation instructions for other systems can be found [here](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager). You can find instructions on building from source [here](https://github.com/joyent/node/wiki/Installation).
 
+### Nodemon
+
+`sudo npm install -g nodemon`
+
+## How can I learn more about node?
+
+- [Art of Node](https://github.com/maxogden/art-of-node)
+- [Learn You the Node.js for Much Win](https://github.com/rvagg/learnyounode#learn-you-the-nodejs-for-much-win)
+- [Stream Adventure](https://github.com/substack/stream-adventure)
+- [The Node Beginner Book](http://www.nodebeginner.org/)
+- Look at other people's apps on GitHub.
