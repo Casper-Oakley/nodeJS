@@ -1,16 +1,23 @@
 	var tag = document.createElement('script');
+	var socket = io.connect(window.location.hostname);
 	tag.src = "https://www.youtube.com/iframe_api";
+	var firstID;
+	socket.on('message', function (data) {
+		firstID=data.message;
+	});
 	var firstScriptTag = document.getElementsByTagName('script')[0];
 	firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
 	var player;
 	function onYouTubeIframeAPIReady(){
+		console.log(firstID);
 		player = new YT.Player('player', {
 			height:'390',
 			width:'640',
-			videoId: 'M7lc1UVf-VE',
+			Id: firstID,
 			events: {
 				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange
+				'onStateChange': onPlayerStateChange,
+				'onError': onPlayError
 			}
 		});
 	}
@@ -19,18 +26,21 @@
 	}
 function onPlayerStateChange(event) {
 	}
+	function onPlayError(event){
+		player.loadVideoById(firstID);
+	}
 	function stopVideo() {
 		player.stopVideo();
 	}
 
 window.onload = function() {
 
-	var socket = io.connect(window.location.hostname);
 	var field = document.getElementById("field");
 	var sendButton = document.getElementById("send");
 
 	socket.on('message', function (data) {
-		console.log(data);
+		console.log(data.message);
+		player.loadVideoById(data.message);
 	});
 	
 	sendButton.onclick = function() {
