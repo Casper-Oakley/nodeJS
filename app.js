@@ -1,6 +1,7 @@
 var express = require('express')
 , http = require('http')
 , app = express()
+, socket = require('socket.io-client')
 , mongoose = require('mongoose')
 , color = require('colors')
 , $ = require('jquery').create()
