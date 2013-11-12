@@ -1,5 +1,5 @@
 	var tag = document.createElement('script');
-	var socket = io.connect(window.location.hostname);
+	var socket = io.connect(window.location.hostname, {'force new connection': true});
 	tag.src = "https://www.youtube.com/iframe_api";
 	var firstID;
 	socket.on('message', function (data) {
